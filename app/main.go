@@ -5,6 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+
+	authApi "github.com/thhuang/go-server/app/handlers/auth"
 )
 
 func main() {
@@ -12,11 +14,7 @@ func main() {
 
 	app.Use(logger.New())
 
-	app.Get("/ping", func(c *fiber.Ctx) error {
-		return c.JSON(map[string]interface{}{
-			"message": "pong",
-		})
-	})
+	authApi.New(app.Group("/auth"))
 
 	log.Fatal(app.Listen(":3000"))
 }
