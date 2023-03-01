@@ -1,19 +1,22 @@
 package main
 
 import (
-	"net/http"
+	"log"
 
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
-	router := gin.Default()
+	app := fiber.New()
 
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
+	app.Use(logger.New())
+
+	app.Get("/ping", func(c *fiber.Ctx) error {
+		return c.JSON(map[string]interface{}{
 			"message": "pong",
 		})
 	})
 
-	router.Run()
+	log.Fatal(app.Listen(":3000"))
 }
