@@ -10,11 +10,11 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 
-	authApi "github.com/thhuang/go-server/app/handlers/auth"
+	authController "github.com/thhuang/go-server/app/controllers/auth"
 )
 
 var (
-	limiterConfig = limiter.Config{Max: 100, Expiration: 30 * time.Second}
+	limiterConfig = limiter.Config{Max: 10, Expiration: 30 * time.Second}
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 	app.Use(limiter.New(limiterConfig))
 
 	// Handlers
-	authApi.New(app.Group("/auth"))
+	authController.New(app.Group("/auth"))
 
 	log.Fatal(app.Listen(":3000"))
 }
