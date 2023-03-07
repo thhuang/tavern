@@ -40,7 +40,25 @@ func (h *handler) register(c *fiber.Ctx) error {
 }
 
 func (h *handler) login(c *fiber.Ctx) error {
-	return c.JSON(map[string]interface{}{
-		"message": "login works",
-	})
+	payload := struct {
+		Name  string `json:"name"`
+		Email string `json:"email"`
+	}{}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return err
+	}
+
+	// return c.JSON(payload)
+	if payload.Name == "123" {
+
+		return c.JSON(map[string]interface{}{
+			"message": "login works",
+		})
+	} else {
+
+		return c.JSON(map[string]interface{}{
+			"message": "login fail"})
+	}
+
 }
