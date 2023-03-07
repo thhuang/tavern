@@ -14,6 +14,7 @@ func New(
 
 	r.Get("/ping", h.ping)
 	r.Post("/register", h.register)
+	r.Post("/login", h.login)
 }
 
 type handler struct{}
@@ -35,5 +36,11 @@ func (h *handler) register(c *fiber.Ctx) error {
 
 	return c.Status(fiber.StatusInternalServerError).JSON(errorModel.ErrorResponse{
 		Code: errorModel.ErrorCodeNotImplemented,
+	})
+}
+
+func (h *handler) login(c *fiber.Ctx) error {
+	return c.JSON(map[string]interface{}{
+		"message": "login works",
 	})
 }
