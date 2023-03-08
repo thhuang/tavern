@@ -21,7 +21,7 @@ func main() {
 	app := fiber.New()
 
 	// Default middlewares
-	app.Use(logger.New())
+	app.Use(  logger.New())
 	app.Use(recover.New())
 	app.Use(requestid.New())
 	app.Use(limiter.New(limiterConfig))
