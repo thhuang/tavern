@@ -25,6 +25,6 @@ jobs:
         timeout-minutes: 3
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.49
+          version: v1.51
           # workaround from https://github.com/golangci/golangci-lint-action/issues/119
           args: '--out-${NO_FUTURE}format=colored-line-number --timeout=1m'
