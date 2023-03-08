@@ -28,3 +28,15 @@ jobs:
           version: v1.51
           # workaround from https://github.com/golangci/golangci-lint-action/issues/119
           args: '--out-${NO_FUTURE}format=colored-line-number --timeout=1m'
+  gofmt:
+    name: format 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: gofmt
+        run: |
+          if [ -n "$(gofmt -s -d .)" ]; then
+            echo "Go code is not formatted:"
+            gofmt -s -d .
+            exit 1
+          fi
