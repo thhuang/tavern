@@ -8,6 +8,8 @@ import (
 	"github.com/thhuang/go-server/utils/clock"
 )
 
+type ctxKey string
+
 type CTX struct {
 	context.Context
 	logrus.FieldLogger
@@ -28,7 +30,7 @@ func (context CTX) Now() time.Time {
 
 func WithValue(parent CTX, key string, val interface{}) CTX {
 	return CTX{
-		Context:     context.WithValue(parent, key, val),
+		Context:     context.WithValue(parent, ctxKey(key), val),
 		FieldLogger: parent.FieldLogger.WithField(key, val),
 		Clock:       parent.Clock,
 	}
