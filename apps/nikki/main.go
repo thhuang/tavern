@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 
-	authController "github.com/thhuang/go-server/app/controllers/auth"
+	authController "github.com/thhuang/go-server/apps/nikki/controllers/auth"
 )
 
 var (
