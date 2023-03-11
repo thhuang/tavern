@@ -14,6 +14,7 @@ func New(
 
 	r.Get("/ping", h.ping)
 	r.Post("/register", h.register)
+	r.Post("/login", h.login)
 }
 
 type handler struct{}
@@ -36,4 +37,28 @@ func (h *handler) register(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusInternalServerError).JSON(errorModel.ErrorResponse{
 		Code: errorModel.ErrorCodeNotImplemented,
 	})
+}
+
+func (h *handler) login(c *fiber.Ctx) error {
+	payload := struct {
+		Name  string `json:"name"`
+		Email string `json:"email"`
+	}{}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return err
+	}
+
+	// return c.JSON(payload)
+	if payload.Name == "123" {
+
+		return c.JSON(map[string]interface{}{
+			"message": "login works",
+		})
+	} else {
+
+		return c.JSON(map[string]interface{}{
+			"message": "login fail"})
+	}
+
 }
