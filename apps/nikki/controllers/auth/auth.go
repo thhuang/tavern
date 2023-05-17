@@ -2,7 +2,7 @@ package auth
 
 import (
 	"github.com/gofiber/fiber/v2"
-	authEntity "github.com/thhuang/go-server/apps/nikki/entities/auth"
+	"github.com/thhuang/go-server/apps/nikki/models"
 	apiUtils "github.com/thhuang/go-server/utils/api"
 	errorModel "github.com/thhuang/go-server/utils/error"
 )
@@ -26,7 +26,7 @@ func (h *handler) ping(c *fiber.Ctx) error {
 }
 
 func (h *handler) register(c *fiber.Ctx) error {
-	p := authEntity.UserAuth{}
+	p := models.Auth{}
 	if err := apiUtils.ParseBody(c, &p); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(errorModel.ErrorResponse{
 			Code:    errorModel.ErrorCodeUnknown,
