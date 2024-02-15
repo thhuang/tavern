@@ -1,5 +1,7 @@
 package error
 
+import "errors"
+
 type ErrorCode int
 
 const (
@@ -12,3 +14,8 @@ type ErrorResponse struct {
 	Code    ErrorCode `json:"code"`
 	Message string    `json:"message"`
 }
+
+var (
+	ErrorUnknown        = errors.New("unknown error")
+	ErrorNotImplemented = errors.New("not implemented")
+)
