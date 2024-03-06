@@ -43,3 +43,11 @@ func WithValues(parent CTX, kvs map[string]interface{}) CTX {
 	}
 	return c
 }
+
+func WithCancel(parent CTX) (CTX, context.CancelFunc) {
+	context, cancel := context.WithCancel(parent)
+	return CTX{
+		Context:     context,
+		FieldLogger: parent.FieldLogger,
+	}, cancel
+}
