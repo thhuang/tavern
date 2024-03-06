@@ -2,7 +2,7 @@ package auth
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/thhuang/go-server/apps/nikki/models"
+	"github.com/thhuang/go-server/internal/apps/nikki/models"
 	apiUtils "github.com/thhuang/go-server/utils/api"
 	errorModel "github.com/thhuang/go-server/utils/error"
 )
