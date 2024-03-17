@@ -2,6 +2,8 @@ package auth
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/pkg/errors"
+
 	"github.com/thhuang/go-server/internal/apps/nikki/models"
 	apiUtils "github.com/thhuang/go-server/utils/api"
 	errorModel "github.com/thhuang/go-server/utils/error"
@@ -46,7 +48,7 @@ func (h *handler) login(c *fiber.Ctx) error {
 	}{}
 
 	if err := c.BodyParser(&payload); err != nil {
-		return err
+		return errors.Wrap(err, "logic::BodyParser")
 	}
 
 	// return c.JSON(payload)
