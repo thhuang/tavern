@@ -1,11 +1,12 @@
 package auth
 
 import (
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/pkg/errors"
+	"github.com/thhuang/kakao/util/rest"
 
 	"github.com/thhuang/go-server/internal/apps/nikki/models"
-	apiUtils "github.com/thhuang/go-server/utils/api"
 	errorModel "github.com/thhuang/go-server/utils/error"
 )
 
@@ -19,7 +20,9 @@ func New(
 	r.Post("/login", h.login)
 }
 
-type handler struct{}
+type handler struct {
+	validate *validator.Validate
+}
 
 func (h *handler) ping(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
@@ -29,7 +32,7 @@ func (h *handler) ping(c *fiber.Ctx) error {
 
 func (h *handler) register(c *fiber.Ctx) error {
 	p := models.Auth{}
-	if err := apiUtils.ParseBody(c, &p); err != nil {
+	if err := rest.ParseBody(c, h.validate, &p); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(errorModel.ErrorResponse{
 			Code:    errorModel.ErrorCodeUnknown,
 			Message: err.Error(),
