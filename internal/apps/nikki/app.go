@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 
 	authController "github.com/thhuang/go-server/internal/apps/nikki/controllers/auth"
-	"github.com/thhuang/go-server/utils/ctx"
+	"github.com/thhuang/kakao/util/ctx"
 )
 
 var (

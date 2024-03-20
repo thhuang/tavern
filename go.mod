@@ -9,8 +9,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.52.2
 	github.com/google/uuid v1.5.0
 	github.com/pkg/errors v0.9.1
-	github.com/sirupsen/logrus v1.9.0
-	github.com/thhuang/kakao v0.0.0-20240317052358-aed283c00364
+	github.com/thhuang/kakao v0.0.1
 )
 
 require (
@@ -25,6 +24,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
+	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/tinylib/msgp v1.1.8 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
